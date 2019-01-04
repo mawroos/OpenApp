@@ -33,7 +33,15 @@ export default class App extends Vue {
 
     // method
     async greet() {
-        this.greeting = await abp.services.app.demo1Service.getMyGreeting();
+        var dimensions = [JSON.stringify({ Name: "Co" }), JSON.stringify({ Name: "SellingLocation" })];
+        var measures = [JSON.stringify({ Name: "Sales", ColumnName: "NetSales", AggregationType: 0 })];
+        var input = {
+            dimensions: dimensions,
+            measures: measures
+        }
+        var results = await abp.services.app.demo1Service.getData2(input);
+        this.greeting = JSON.stringify(results);
+
     }
 
 }

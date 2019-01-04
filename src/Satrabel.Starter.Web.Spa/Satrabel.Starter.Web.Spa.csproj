@@ -82,6 +82,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Satrabel.OpenApp.EntityFramework\Satrabel.OpenApp.EntityFramework.csproj" />
     <ProjectReference Include="..\Satrabel.OpenApp.Web\Satrabel.OpenApp.Web.csproj" />
+    <ProjectReference Include="..\SQLQueryBuilder\SQLQueryBuilder.csproj" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\demo1\boot.ts" />

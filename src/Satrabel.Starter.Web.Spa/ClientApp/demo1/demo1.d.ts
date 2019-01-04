@@ -7,7 +7,7 @@ declare namespace abp {
             namespace demo1Service {
 
                 function getMyGreeting(): string;
-
+                function getData2(input: any): any;
             }
         }
     }
