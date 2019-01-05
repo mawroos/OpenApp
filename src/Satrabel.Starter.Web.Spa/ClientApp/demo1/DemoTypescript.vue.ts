@@ -1,11 +1,19 @@
 ﻿import Vue from 'vue'
 import Component from 'vue-class-component'
+import { DxChart, DxSeries } from 'devextreme-vue/chart';
+import DataSource from 'devextreme/data/data_source';
+import CustomStore from 'devextreme/data/custom_store';
+
+
 
 @Component({   
     props: {
         propMessage: String
     },
     components: {
+        DxChart,
+       
+        DxSeries
         
     }
 })
@@ -33,6 +41,15 @@ export default class App extends Vue {
 
     // method
     async greet() {
+
+        this.greeting = "Hi from typescript";
+
+    }
+
+
+
+
+    async GetData() {
         var dimensions = [JSON.stringify({ Name: "Co" }), JSON.stringify({ Name: "SellingLocation" })];
         var measures = [JSON.stringify({ Name: "Sales", ColumnName: "NetSales", AggregationType: 0 })];
         var input = {
@@ -40,8 +57,29 @@ export default class App extends Vue {
             measures: measures
         }
         var results = await abp.services.app.demo1Service.getData2(input);
-        this.greeting = JSON.stringify(results);
-
+        return results;
     }
 
+    PostData() {
+        var dimensions = [JSON.stringify({ Name: "Co" }), JSON.stringify({ Name: "SellingLocation" })];
+        var measures = [JSON.stringify({ Name: "Sales", ColumnName: "NetSales", AggregationType: 0 })];
+        var input = {
+            dimensionColumns: dimensions,
+            measureColumns: measures
+        };
+        var results = abp.services.app.demo1Service.requestData2(input,
+            {});
+        return results;
+    }
+
+    populationData = new DataSource({
+        store: new CustomStore({
+            load: () => {
+                return this.PostData();
+            },
+            loadMode: 'raw'
+        }),
+        //filter: ['t', '>', '6'],
+        paginate: false
+    });
 }

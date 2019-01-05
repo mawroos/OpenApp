@@ -2,6 +2,10 @@
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
+    "iis": {
+      "applicationUrl": "http://localhost/NEWSGDASH",
+      "sslPort": 0
+    },
     "iisExpress": {
       "applicationUrl": "http://localhost:62114/",
       "sslPort": 0
@@ -19,6 +23,12 @@
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "http://localhost:5000",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "IIS": {
+      "commandName": "IIS",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

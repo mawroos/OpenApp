@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Abp.Application.Services;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Satrabel.Starter.Web.Application.Services.Dto;
 using SQLQueryBuilder;
@@ -90,12 +91,40 @@ namespace Satrabel.Starter.Web.Application
 
 
         }
+
+        [HttpPost]
+        public async Task<IEnumerable<IDictionary<string, object>>> RequestData2(DahsboardDataParameters input)
+        {
+
+
+            QueryGenerator queryBuilder = new QueryGenerator(connectionString);
+            queryBuilder.TableName = "Vehicles";
+            
+
+            List<DimensionColumn> dims = new List<DimensionColumn>();
+            dims.AddRange(input.DimensionColumns);
+            queryBuilder.Dimensions = dims;
+            List<MeasureColumn> measures = new List<MeasureColumn>();
+            measures.AddRange(input.MeasureColumns);
+
+            queryBuilder.Measures = measures;
+            var results = queryBuilder.GetGroupedData();
+
+            return results;
+
+
+        }
     }
 
     public class DahsboardDataParameters
     {
         public List<DimensionColumn> DimensionColumns { get; set; }
         public List<MeasureColumn> MeasureColumns { get; set; }
+
+        public DahsboardDataParameters()
+        {
+            
+        }
         public DahsboardDataParameters(DashboardDataInput input)
         {
             DimensionColumns = new List<DimensionColumn>();
