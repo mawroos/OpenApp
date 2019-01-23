@@ -2,7 +2,8 @@
     <div class="hello">
         <h1>{{ helloMsg }}</h1>
         <dx-chart id="chart"
-                  :data-source="populationData">
+                  :data-source="populationData" 
+                     palette="HarmonyLight">
             <dx-series argument-field="Co"
                        value-field="Sales"
                        name="Company Sales"

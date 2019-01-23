@@ -61,14 +61,13 @@ export default class App extends Vue {
     }
 
     PostData() {
-        var dimensions = [JSON.stringify({ Name: "Co" }), JSON.stringify({ Name: "SellingLocation" })];
-        var measures = [JSON.stringify({ Name: "Sales", ColumnName: "NetSales", AggregationType: 0 })];
+        var dimensions = [{ Name: "Co" },{ Name: "SellingLocation" }];
+        var measures = [{ Name: "Sales", ColumnName: "NetSales", AggregationType: 0 }];
         var input = {
             dimensionColumns: dimensions,
             measureColumns: measures
         };
-        var results = abp.services.app.demo1Service.requestData2(input,
-            {});
+        var results = abp.services.app.demo1Service.requestData2(input);
         return results;
     }
 

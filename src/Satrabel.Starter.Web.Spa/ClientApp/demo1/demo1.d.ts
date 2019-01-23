@@ -8,7 +8,7 @@ declare namespace abp {
 
                 function getMyGreeting(): string;
                 function getData2(input: any): any;
-                function requestData2(input: any, ajax: any): any;
+                function requestData2(input: any): any;
             }
         }
     }
